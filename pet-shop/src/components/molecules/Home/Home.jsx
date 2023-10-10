@@ -1,4 +1,4 @@
-import Header from "../Header/Header";
+import Header from "../../organisms/Header/Header";
 
 const Home = () => {
   return <Header />;

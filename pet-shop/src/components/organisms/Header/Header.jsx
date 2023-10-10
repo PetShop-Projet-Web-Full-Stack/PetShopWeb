@@ -6,23 +6,23 @@ const Header = () => {
   return (
     <div className={Style.header}>
       <div className={Style.headerTitle}>
-        <Button text="Title"></Button>
+        <Button>Title</Button>
       </div>
       <div className={Style.headerBtn}>
         <Link className={Style.headerLink} to="/">
-          <Button text="Accueil"></Button>
+          <Button>Accueil</Button>
         </Link>
 
         <Link className={Style.headerLink} to="/animaux">
-          <Button text="Animaux"></Button>
+          <Button>Animaux</Button>
         </Link>
 
         <Link className={Style.headerLink} to="/animaleries">
-          <Button text="Animaleries"></Button>
+          <Button> Animaleries</Button>
         </Link>
 
         <Link className={Style.headerLink} to="/connexion">
-          <Button text="Connexion"></Button>
+          <Button> Connexion</Button>
         </Link>
       </div>
     </div>
