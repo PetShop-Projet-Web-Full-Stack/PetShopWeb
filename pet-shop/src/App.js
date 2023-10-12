@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Home from "./components/molecules/Home/Home";
-import Connexion from "./components/organisms/Connexion/Connexion";
+import Home from "./components/pages/Home/Home";
+import Connexion from "./components/pages/Connexion/Connexion";
 import Animalerie from "./components/pages/Animalerie/Animalerie";
 import Animals from "./components/pages/Animals/Animals";
 
