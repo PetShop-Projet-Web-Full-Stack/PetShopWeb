@@ -13,7 +13,7 @@ const Header = () => {
           <Button>Accueil</Button>
         </Link>
 
-        <Link className={Style.headerLink} to="/animaux">
+        <Link className={Style.headerLink} to="/animals">
           <Button>Animaux</Button>
         </Link>
 
