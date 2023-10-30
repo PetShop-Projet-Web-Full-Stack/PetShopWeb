@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import { handleInputChange, isFormValid } from "../../toolkit/form.service";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const InscriptionForm = () => {
   const navigate = useNavigate();

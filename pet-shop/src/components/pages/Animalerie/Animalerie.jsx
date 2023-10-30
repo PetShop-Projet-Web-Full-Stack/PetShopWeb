@@ -3,7 +3,7 @@ import Header from "../../organisms/Header/Header";
 
 const Animalerie = () => {
   return (
-    <div>
+    <div className="bg-slate-50 h-screen">
       <Header />
       Animalerie
     </div>

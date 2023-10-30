@@ -4,7 +4,7 @@ import ConnexionForm from "../../organisms/ConnexionForm/ConnexionForm";
 
 const Connexion = () => {
   return (
-    <div>
+    <div className="bg-slate-50 h-screen">
       <Header />
       <ConnexionForm />
     </div>
