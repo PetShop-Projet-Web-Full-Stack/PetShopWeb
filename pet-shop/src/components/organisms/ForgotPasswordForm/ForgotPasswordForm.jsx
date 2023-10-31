@@ -6,12 +6,13 @@ import {
   resetFormState,
 } from "../../toolkit/form.service";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const ConnexionForm = () => {
+const ForgotPasswordForm = () => {
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
     email: { value: "", valid: false },
-    password: { value: "", valid: false },
   });
 
   const form = [
@@ -20,12 +21,6 @@ const ConnexionForm = () => {
       type: "email",
       name: "email",
       placeholder: "Email",
-    },
-    {
-      value: formState.password.value,
-      type: "password",
-      name: "password",
-      placeholder: "Mot de passe",
     },
   ];
 
@@ -41,25 +36,23 @@ const ConnexionForm = () => {
     event.preventDefault();
     if (formValid()) {
       const email = formState.email.value;
-      const password = formState.password.value;
       console.log("Formulaire valide, soumettre les données...");
-      console.log(email, password);
+      console.log(email);
       resetFormState(formState);
+      navigate("/connexion", {
+        state: {
+          showAlert: true,
+          messageAlert: "Un email vient d'être envoyé",
+        },
+      });
     } else {
       alert("Le formulaire n'est pas rempli correctement");
     }
   };
 
-  const location = useLocation();
-
-  useState(() => {
-    const showAlert = location?.state?.showAlert;
-    if (showAlert !== undefined) {
-      const messageAlert = location?.state?.messageAlert;
-      alert(messageAlert);
-      location.state = undefined;
-    }
-  }, [location]);
+  const navigateOnClick = () => {
+    navigate("/connexion");
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -67,7 +60,7 @@ const ConnexionForm = () => {
         onSubmit={handleSubmit}
         className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg"
       >
-        <h2 className="text-2xl font-bold mb-4">Connexion</h2>
+        <h2 className="text-2xl font-bold mb-4">Changer de mot de passe</h2>
         {form.map((field, index) => {
           return (
             <div className="mb-4" key={index}>
@@ -82,18 +75,13 @@ const ConnexionForm = () => {
             </div>
           );
         })}
-        <div className="text-right">
-          <Link to="/forgot-password">
-            <span className="underline">Mot de passe oublié ?</span>
-          </Link>
-        </div>
+
         <div className="text-center flex justify-center items-center gap-5">
           <ButtonComponent
-            clazz={`w-auto bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 p-2 `}
+            onClick={navigateOnClick}
+            clazz={`w-20 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600`}
           >
-            <Link to={"/inscription"}>
-              Pas encore de compte ? Inscrivez-vous !
-            </Link>
+            Retour
           </ButtonComponent>
           <ButtonComponent
             type="submit"
@@ -102,7 +90,7 @@ const ConnexionForm = () => {
               !formValid() ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            Connexion
+            Envoyer
           </ButtonComponent>
         </div>
       </form>
@@ -110,4 +98,4 @@ const ConnexionForm = () => {
   );
 };
 
-export default ConnexionForm;
+export default ForgotPasswordForm;
