@@ -1,12 +1,16 @@
 import React from "react";
 import ForgotPasswordForm from "../../organisms/ForgotPasswordForm/ForgotPasswordForm";
 import Header from "../../organisms/Header/Header";
+import Footer from "../../organisms/Footer/Footer";
 
 const ForgotPassword = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <ForgotPasswordForm />
+      <div className="flex-1">
+        <ForgotPasswordForm />
+      </div>
+      <Footer />
     </div>
   );
 };

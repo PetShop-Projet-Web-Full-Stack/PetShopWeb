@@ -3,9 +3,9 @@ import Header from "../../organisms/Header/Header";
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      Home
+      <div className="flex-1">Home Content</div>
       <Footer />
     </div>
   );

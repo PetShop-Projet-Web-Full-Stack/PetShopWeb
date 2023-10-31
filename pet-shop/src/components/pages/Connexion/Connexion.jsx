@@ -5,9 +5,11 @@ import Footer from "../../organisms/Footer/Footer";
 
 const Connexion = () => {
   return (
-    <div className="bg-slate-50 h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <ConnexionForm />
+      <div className="flex-1">
+        <ConnexionForm />
+      </div>
       <Footer />
     </div>
   );
