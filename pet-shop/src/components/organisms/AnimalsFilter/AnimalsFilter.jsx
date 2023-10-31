@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import { handleInputChange } from "../../toolkit/form.service";
+import {
+  AdjustmentsHorizontalIcon,
+  HomeIcon,
+  ArchiveBoxArrowDownIcon,
+  ArrowLeftOnRectangleIcon,
+  DocumentDuplicateIcon,
+  PencilIcon,
+  TrashIcon,
+} from "@heroicons/react/20/solid";
+import ComboBox from "../../atoms/ComboBox/ComboBox";
 
 const AnimalsFilter = () => {
   const racesSelect = ["Labrador", "Caniche"];
@@ -22,22 +32,59 @@ const AnimalsFilter = () => {
     handleInputChange(event, setFormState, formState);
   };
 
+  const [comboBoxSelectedValue, setComboBoxSelectedValue] = useState(null);
+
+  const modifySelectedValueComboBox = (item) => {
+    setComboBoxSelectedValue(item);
+  };
+
+  const comboBoxItems = [
+    {
+      icon: PencilIcon,
+      name: "Modifier",
+      value: 0,
+    },
+    {
+      icon: DocumentDuplicateIcon,
+      name: "Dupliquer",
+      value: 1,
+    },
+    {
+      icon: ArchiveBoxArrowDownIcon,
+      name: "Archiver",
+      value: 2,
+    },
+    {
+      icon: ArrowLeftOnRectangleIcon,
+      name: "Se déplacer",
+      value: 3,
+    },
+    {
+      icon: TrashIcon,
+      name: "Supprimer",
+      value: 4,
+    },
+  ];
+
+  const DrowDowns = [
+    {
+      icon: HomeIcon,
+      name: "Home",
+      path: "/",
+    },
+    {
+      icon: AdjustmentsHorizontalIcon,
+      name: "Management",
+      path: "/Managements",
+    },
+  ];
+
   return (
     <form className="w-60 bg-slate-100 flex-col p-5" onSubmit={handleSubmit}>
-      {/* <SelectComponent
-        selectedOption={formState.races.value}
-        listItem={racesSelect}
-        onChange={onChangeField}
-      >
-        Races
-      </SelectComponent>
-      <SelectComponent
-        selectedOption={formState.species.value}
-        listItem={speciesSelect}
-        onChange={onChangeField}
-      >
-        Espèces
-      </SelectComponent> */}
+      <ComboBox
+        items={comboBoxItems}
+        modifySelectedValue={modifySelectedValueComboBox}
+      />
       <div className="gap-2 flex pt-5">
         <InputFormComponent
           value={formState.minAge.value}
