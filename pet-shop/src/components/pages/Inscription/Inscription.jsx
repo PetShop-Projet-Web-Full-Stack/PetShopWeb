@@ -6,7 +6,7 @@ const Inscription = () => {
   return (
     <div>
       <Header />
-      <InscriptionForm className=" mx-auto my-auto md:mx-4 md:my-0 " />
+      <InscriptionForm />
     </div>
   );
 };

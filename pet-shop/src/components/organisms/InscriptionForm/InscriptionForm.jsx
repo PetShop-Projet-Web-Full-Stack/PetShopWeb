@@ -71,14 +71,12 @@ const InscriptionForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formValid()) {
-      console.log(formState);
       const nom = formState.nom.value;
       const prenom = formState.prenom.value;
       const email = formState.email.value;
       const tel = formState.telephone.value;
       const pwd = formState.password.value;
       const confirmation = formState.confirmation.value;
-      console.log("Formulaire valide, soumettre les données...");
       console.log(nom, prenom, tel, email, pwd, confirmation);
       navigate("/connexion", {
         state: {

@@ -36,7 +36,6 @@ const ForgotPasswordForm = () => {
     event.preventDefault();
     if (formValid()) {
       const email = formState.email.value;
-      console.log("Formulaire valide, soumettre les données...");
       console.log(email);
       resetFormState(formState);
       navigate("/connexion", {
