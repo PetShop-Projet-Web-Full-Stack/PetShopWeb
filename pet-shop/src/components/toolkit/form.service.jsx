@@ -15,6 +15,6 @@ export const isFormValid = (formState) => {
 
 export const resetFormState = (formState) => {
   Object.values(formState).map((field) => {
-    field.value = "";
+    return (field.value = "");
   });
 };

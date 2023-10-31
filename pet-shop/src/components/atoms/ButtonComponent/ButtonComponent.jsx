@@ -4,9 +4,9 @@ const ButtonComponent = (props) => {
   const { clazz, disabled, type, onClick } = props;
   return (
     <Button
-      className={clazz}
+      className={`${clazz}`}
       disabled={disabled}
-      type={type}
+      type={type | "button"}
       onClick={onClick ? onClick : () => {}}
     >
       {props.children}
