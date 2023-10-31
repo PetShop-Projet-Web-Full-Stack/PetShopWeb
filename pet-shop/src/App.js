@@ -5,6 +5,8 @@ import Home from "./components/pages/Home/Home";
 import Connexion from "./components/pages/Connexion/Connexion";
 import Animalerie from "./components/pages/Animalerie/Animalerie";
 import Animals from "./components/pages/Animals/Animals";
+import Inscription from "./components/pages/Inscription/Inscription";
+import ForgotPassword from "./components/pages/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
@@ -14,6 +16,12 @@ function App() {
         <Route exact path="/animals" element={<Animals />}></Route>
         <Route exact path="/animaleries" element={<Animalerie />}></Route>
         <Route exact path="/connexion" element={<Connexion />}></Route>
+        <Route exact path="/inscription" element={<Inscription />}></Route>
+        <Route
+          exact
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        ></Route>
       </Routes>
     </Router>
   );
