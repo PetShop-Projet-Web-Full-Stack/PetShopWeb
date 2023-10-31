@@ -42,7 +42,6 @@ const ConnexionForm = () => {
     if (formValid()) {
       const email = formState.email.value;
       const password = formState.password.value;
-      console.log("Formulaire valide, soumettre les données...");
       console.log(email, password);
       resetFormState(formState);
     } else {
