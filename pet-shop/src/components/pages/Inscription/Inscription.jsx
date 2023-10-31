@@ -5,9 +5,11 @@ import Footer from "../../organisms/Footer/Footer";
 
 const Inscription = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <InscriptionForm />
+      <div className="flex-1">
+        <InscriptionForm />
+      </div>
       <Footer />
     </div>
   );

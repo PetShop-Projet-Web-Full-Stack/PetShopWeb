@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-4">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold mb-2">Contactez-nous</h2>
@@ -30,17 +30,13 @@ const Footer = () => {
                   to="/animaleries"
                   className="text-white hover:text-blue-500"
                 >
-                  Les animalerie
+                  Les animaleries
                 </Link>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-
-      <p className="text-center text-sm mt-4">
-        &copy; {new Date().getFullYear()} Pet shop
-      </p>
     </footer>
   );
 };

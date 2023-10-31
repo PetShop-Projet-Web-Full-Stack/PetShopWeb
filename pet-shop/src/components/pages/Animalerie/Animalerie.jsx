@@ -4,9 +4,9 @@ import Footer from "../../organisms/Footer/Footer";
 
 const Animalerie = () => {
   return (
-    <div className="bg-slate-50 h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      Animalerie
+      <div className="flex-1">Animalerie</div>
       <Footer />
     </div>
   );

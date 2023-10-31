@@ -83,7 +83,7 @@ const ConnexionForm = () => {
         })}
         <div className="text-right">
           <Link to="/forgot-password">
-            <span className="underline">Mot de passe oublié ?</span>
+            <div className="underline">Mot de passe oublié ?</div>
           </Link>
         </div>
         <div className="text-center flex justify-center items-center gap-5">
