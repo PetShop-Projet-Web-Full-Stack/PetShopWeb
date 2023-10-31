@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../organisms/Header/Header";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
+import Footer from "../../organisms/Footer/Footer";
 
 const Animals = () => {
   const cards = [
@@ -51,6 +52,7 @@ const Animals = () => {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

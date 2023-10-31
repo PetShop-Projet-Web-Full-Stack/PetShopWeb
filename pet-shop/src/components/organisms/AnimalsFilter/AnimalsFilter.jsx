@@ -63,28 +63,33 @@ const AnimalsFilter = () => {
 
   return (
     <div className="w-60 bg-slate-100 flex flex-col gap-5 p-5 ">
-      <ComboBoxComponent
-        items={raceItems}
-        modifySelectedValue={onRacesChange}
-      />
+      <ComboBoxComponent items={raceItems} modifySelectedValue={onRacesChange}>
+        Races
+      </ComboBoxComponent>
       <ComboBoxComponent
         items={speciesItems}
         modifySelectedValue={onSpeciesChange}
-      />
-      <div className="gap-2 flex pt-5 z-auto">
-        <InputFormComponent
-          value={formState.minAge.value}
-          name="minAge"
-          placeholder="Min : 0"
-          onChange={onChangeField}
-        />
-        <InputFormComponent
-          value={formState.maxAge.value}
-          name="maxAge"
-          placeholder="Max : 0"
-          onChange={onChangeField}
-        />
+      >
+        Espèces
+      </ComboBoxComponent>
+      <div className="flex-col">
+        <h1>Tranche d'âge</h1>
+        <div className="gap-2 flex pt-5 z-auto">
+          <InputFormComponent
+            value={formState.minAge.value}
+            name="minAge"
+            placeholder="Min : 0"
+            onChange={onChangeField}
+          />
+          <InputFormComponent
+            value={formState.maxAge.value}
+            name="maxAge"
+            placeholder="Max : 0"
+            onChange={onChangeField}
+          />
+        </div>
       </div>
+
       <ButtonComponent clazz="w-full mt-5 p-2" onClick={handleSubmit}>
         Filtrer
       </ButtonComponent>
