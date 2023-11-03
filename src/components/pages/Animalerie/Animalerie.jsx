@@ -12,15 +12,18 @@ const Animalerie = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const animalerieCard = useSelector((state) => {
-    return state.animalerie.animalerie;
+    console.log(state);
+    return state.animalerie.animaleries || [];
   });
+
+  console.log(animalerieCard);
 
   useEffect(() => {
     dispatch(getAllAnimalerie());
   }, [dispatch]);
 
   const navigateToRecap = (card) => {
-    navigate("/animalerie/animals", {
+    navigate(`/animalerie/${card.id}`, {
       state: {
         animalerie: card,
       },

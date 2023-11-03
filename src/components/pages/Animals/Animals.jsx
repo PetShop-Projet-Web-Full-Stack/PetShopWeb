@@ -39,7 +39,7 @@ const Animals = () => {
               <CardComponent
                 key={index}
                 title={animal.name}
-                description={animal.races.name}
+                description={animal.race?.name}
                 btnClazz={"bg-gray-900"}
                 btnContent="Voir plus"
                 srcImg={animal.imgSrc}
