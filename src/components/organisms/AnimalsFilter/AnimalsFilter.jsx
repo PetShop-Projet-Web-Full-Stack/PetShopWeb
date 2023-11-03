@@ -3,13 +3,38 @@ import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponen
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import { handleInputChange } from "../../toolkit/form.service";
 import ComboBoxComponent from "../../atoms/ComboBoxComponent/ComboBoxComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  filterAnimals,
+  getAllRaces,
+  getAllSpecies,
+} from "../../../store/animal";
 
 const AnimalsFilter = () => {
-  const racesSelect = ["Labrador", "Caniche"];
-  const speciesSelect = ["Chat", "Chien"];
+  const dispatch = useDispatch();
+
+  const races = useSelector((state) => {
+    return state.animals?.races?.map((race, index) => {
+      return {
+        name: race.name,
+        value: `${index}`,
+      };
+    });
+  });
+
+  const species = useSelector((state) => {
+    return state.animals?.species?.map((specie, index) => {
+      return {
+        name: specie.name,
+        value: `${index}`,
+      };
+    });
+  });
+
   const [formState, setFormState] = useState({
-    races: { value: racesSelect[0], valid: false },
-    species: { value: speciesSelect[0], valid: false },
+    races: { value: races[0]?.name || "", valid: false },
+    species: { value: species[0]?.name || "", valid: false },
     minAge: { value: "", valid: false },
     maxAge: { value: "", valid: false },
   });
@@ -17,12 +42,17 @@ const AnimalsFilter = () => {
   const [raceCombo, setRaceCombo] = useState(null);
   const [speciesCombo, setSpeciesCombo] = useState(null);
 
+  useEffect(() => {
+    dispatch(getAllRaces());
+    dispatch(getAllSpecies());
+  }, [dispatch]);
+
   const handleSubmit = () => {
-    console.log("on submit form", formState);
-    const race = raceCombo;
-    const species = speciesCombo;
+    const race = races.find((r) => r.value === raceCombo)?.name;
+    const specie = species.find((s) => s.value === speciesCombo)?.name;
     const minAge = formState.minAge.value;
     const maxAge = formState.maxAge.value;
+    dispatch(filterAnimals({ race, specie, minAge, maxAge }));
   };
 
   const onChangeField = (event) => {
@@ -39,38 +69,13 @@ const AnimalsFilter = () => {
     onChangeField({ target: { name: "species", value: itemValue } });
   };
 
-  const raceItems = [
-    {
-      name: "Caniche",
-      value: "0",
-    },
-    {
-      name: "Labrador",
-      value: "1",
-    },
-  ];
-
-  const speciesItems = [
-    {
-      name: "Chat",
-      value: "0",
-    },
-    {
-      name: "Chien",
-      value: "1",
-    },
-  ];
-
   return (
     <div className="w-60 bg-slate-100 flex flex-col gap-5 p-5 ">
-      <ComboBoxComponent items={raceItems} modifySelectedValue={onRacesChange}>
-        Races
-      </ComboBoxComponent>
-      <ComboBoxComponent
-        items={speciesItems}
-        modifySelectedValue={onSpeciesChange}
-      >
+      <ComboBoxComponent items={species} modifySelectedValue={onSpeciesChange}>
         Espèces
+      </ComboBoxComponent>
+      <ComboBoxComponent items={races} modifySelectedValue={onRacesChange}>
+        Races
       </ComboBoxComponent>
       <div className="flex-col">
         <h1>Tranche d'âge</h1>

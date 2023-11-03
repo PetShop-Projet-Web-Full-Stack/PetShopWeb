@@ -1,7 +1,7 @@
 export const handleInputChange = (event, setFormState, formState) => {
   const { name, value } = event.target;
 
-  const isFieldValid = value.trim() !== "" || false;
+  const isFieldValid = value?.trim() !== "" || false;
 
   setFormState({
     ...formState,
