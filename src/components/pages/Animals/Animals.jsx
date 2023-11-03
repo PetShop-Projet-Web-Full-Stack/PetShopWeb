@@ -5,7 +5,7 @@ import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
 import Footer from "../../organisms/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllAnimals } from "../../../store/index";
+import { getAllAnimals } from "../../../store/animal";
 
 const Animals = () => {
   const dispatch = useDispatch();
