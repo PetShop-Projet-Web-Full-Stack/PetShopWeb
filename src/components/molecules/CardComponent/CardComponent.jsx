@@ -10,6 +10,7 @@ const CardComponent = (props) => {
     btnType,
     btnClazz,
     btnContent,
+    onButtonClick,
   } = props;
   return (
     <Card className="w-fit h-fit rounded-3xl bg-white ">
@@ -32,6 +33,7 @@ const CardComponent = (props) => {
             clazz={`${btnClazz} w-20 h-10 py-0`}
             type={btnType}
             disabled={btnDisable || false}
+            onClick={onButtonClick}
           >
             {btnContent}
           </ButtonComponent>

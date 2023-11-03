@@ -5,17 +5,23 @@ import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
 import Footer from "../../organisms/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllAnimals } from "../../../store/animal";
+import { getAllAnimals, getAnimalsByAnimalerieId } from "../../../store/animal";
+import { useLocation } from "react-router-dom";
 
 const Animals = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const animalCards = useSelector((state) => {
     return state.animals.animals;
   });
 
   useEffect(() => {
-    dispatch(getAllAnimals());
-  }, [dispatch]);
+    if (!location.state) {
+      dispatch(getAllAnimals());
+    } else {
+      dispatch(getAnimalsByAnimalerieId({ id: location.state.animalerie.id }));
+    }
+  }, [dispatch, location.state]);
 
   return (
     <div className="bg-slate-50 h-screen">

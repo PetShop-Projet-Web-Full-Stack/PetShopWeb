@@ -20,7 +20,7 @@ const ComboBoxComponent = (props) => {
       <div className="top-16 w-56 text-right flex flex-row justify-center items-center">
         <div className="w-full">
           <Menu as="div" className="w-full relative inline-block text-left">
-            {({ open }) => (
+            {() => (
               <>
                 <div>
                   <Menu.Button className="inline-flex w-full justify-center rounded-md text-gray-900 border hover:bg-xgreen-999 hover:text-white border-gray-400 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -72,7 +72,6 @@ const ComboBoxComponent = (props) => {
         <XMarkIcon
           className="w-6 h-6 cursor-pointer "
           onClick={() => {
-            console.log("foidhbodinb");
             modifySelectedValue(null);
             setValueSelected(null);
           }}
