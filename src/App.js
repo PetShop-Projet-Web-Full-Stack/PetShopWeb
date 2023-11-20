@@ -7,6 +7,7 @@ import Animalerie from "./components/pages/Animalerie/Animalerie";
 import Animals from "./components/pages/Animals/Animals";
 import Inscription from "./components/pages/Inscription/Inscription";
 import ForgotPassword from "./components/pages/ForgotPassword/ForgotPassword";
+import AnimalDetails from "./components/pages/AnimalDetails/AnimalDetails";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
           exact
           path="/forgot-password"
           element={<ForgotPassword />}
+        ></Route>
+        <Route
+          exact
+          path="/animal-details/:id"
+          element={<AnimalDetails />}
         ></Route>
       </Routes>
     </Router>

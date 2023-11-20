@@ -3,7 +3,7 @@ import { RequestApi } from "../toolkit/requestApi";
 
 export const getAllAnimalerie = createAsyncThunk(
   "animalerie/fetchAnimalerie",
-  async (payload) => {
+  async () => {
     return await RequestApi.get("sanctum/csrf-cookie").then(async () => {
       const response = await RequestApi.get("api/pet-shops");
       return response.data;
@@ -29,10 +29,21 @@ export const filterAnimalerie = createAsyncThunk(
   }
 );
 
+export const getAnimalerieById = createAsyncThunk(
+  "/animalerie/:id",
+  async (payload) => {
+    return await RequestApi.get("sanctum/csrf-cookie").then(async () => {
+      const response = await RequestApi.get(`api/pet-shops/${payload.id}`);
+      return response.data;
+    });
+  }
+);
+
 export const animalerieSlice = createSlice({
-  name: "animals",
+  name: "animalerie",
   initialState: {
-    animalerie: [],
+    animalerie: {},
+    animaleries: [],
     status: "idle",
     error: null,
   },
@@ -44,7 +55,7 @@ export const animalerieSlice = createSlice({
       })
       .addCase(getAllAnimalerie.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.animalerie = action.payload;
+        state.animaleries = action.payload;
       })
       .addCase(getAllAnimalerie.rejected, (state, action) => {
         state.status = "failed";
@@ -55,9 +66,20 @@ export const animalerieSlice = createSlice({
       })
       .addCase(filterAnimalerie.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.animalerie = action.payload;
+        state.animaleries = action.payload;
       })
       .addCase(filterAnimalerie.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getAnimalerieById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAnimalerieById.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.animalerie = action.payload;
+      })
+      .addCase(getAnimalerieById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

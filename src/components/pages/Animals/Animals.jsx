@@ -6,9 +6,10 @@ import Footer from "../../organisms/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllAnimals, getAnimalsByAnimalerieId } from "../../../store/animal";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Animals = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const animalCards = useSelector((state) => {
@@ -23,21 +24,28 @@ const Animals = () => {
     }
   }, [dispatch, location.state]);
 
+  const goToAnimalDetails = (animal) => {
+    navigate(`/animal-details/${animal.id}`, { state: { animal } });
+  };
+
   return (
     <div className="bg-slate-50 h-screen">
       <Header />
       <div className="flex bg-slate-50">
         <AnimalsFilter />
         <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
-          {animalCards.map((card, index) => {
+          {animalCards.map((animal, index) => {
             return (
               <CardComponent
                 key={index}
-                title={card.name}
-                description={card.races.name}
+                title={animal.name}
+                description={animal.races.name}
                 btnClazz={"bg-gray-900"}
                 btnContent="Voir plus"
-                srcImg={card.imgSrc}
+                srcImg={animal.imgSrc}
+                onButtonClick={() => {
+                  goToAnimalDetails(animal);
+                }}
               />
             );
           })}

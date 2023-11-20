@@ -11,7 +11,7 @@ import { filterAnimalerie, getAllAnimalerie } from "../../../store/animalerie";
 const AnimalerieFilter = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => {
-    return state.animalerie?.animalerie
+    return state.animalerie?.animaleries
       ?.map((animalerie) => {
         return {
           name: animalerie.city,
