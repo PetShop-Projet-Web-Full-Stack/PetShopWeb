@@ -11,7 +11,6 @@ const AnimalerieDetailsCardComponent = (props) => {
     return state.animalerie.animalerie;
   });
 
-  console.log(animalerie);
   useEffect(() => {
     dispatch(getAnimalerieById({ id: idAnimal }));
   }, [dispatch, idAnimal]);
