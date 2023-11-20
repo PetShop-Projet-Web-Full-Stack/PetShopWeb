@@ -1,6 +1,6 @@
 import React from "react";
-import AnimalDetailCardComponent from "../../molecules/AnimalDetails/AnimalDetailCardComponent";
 import AnimalerieDetailsCardComponent from "../../molecules/AnimalerieDetails/AnimalerieDetailsCardComponent";
+import AnimalDetailCardComponent from "../../molecules/AnimalDetailsCard/AnimalDetailCardComponent";
 
 const AnimalDetailsComponent = (props) => {
   const { animal } = props;

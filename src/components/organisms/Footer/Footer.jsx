@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const links = [
+    { to: "/", name: "Accueil" },
+    { to: "/animals", name: "Nos animaux" },
+    { to: "/animaleries", name: "Les animaleries" },
+  ];
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -15,24 +21,18 @@ const Footer = () => {
           <h2 className="text-2xl font-bold mb-2">Visitez notre site</h2>
           <nav>
             <ul className="text-md">
-              <li>
-                <Link to="/" className="text-white hover:text-blue-500">
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link to="/animals" className="text-white hover:text-blue-500">
-                  Nos animaux
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/animaleries"
-                  className="text-white hover:text-blue-500"
-                >
-                  Les animaleries
-                </Link>
-              </li>
+              {links.map((link) => {
+                return (
+                  <li>
+                    <Link
+                      to={link.to}
+                      className="text-white hover:text-blue-500"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

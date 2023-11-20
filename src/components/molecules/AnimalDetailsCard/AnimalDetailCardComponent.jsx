@@ -5,9 +5,7 @@ const AnimalDetailCardComponent = (props) => {
   const { animal } = props;
 
   const calculateAge = (dateOfBirth) => {
-    const birthDate = new Date(dateOfBirth);
-    const currentDate = new Date();
-    const ageInMilliseconds = currentDate - birthDate;
+    const ageInMilliseconds = new Date() - new Date(dateOfBirth);
     const ageInYears = Math.floor(
       ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000)
     );
@@ -20,7 +18,7 @@ const AnimalDetailCardComponent = (props) => {
       <div className="text-4xl pb-12">Description</div>
       <div className="font-bold grid grid-cols-2 gap-4">
         <DetailCardComponent value={animal.name}>Nom :</DetailCardComponent>
-        <DetailCardComponent value={animal.races.species.name}>
+        <DetailCardComponent value={animal.race?.species?.name}>
           Espèce :
         </DetailCardComponent>
         <DetailCardComponent value={age}>Age :</DetailCardComponent>
@@ -28,7 +26,7 @@ const AnimalDetailCardComponent = (props) => {
         <DetailCardComponent value={animal.date_of_birth}>
           Date de naissance :
         </DetailCardComponent>
-        <DetailCardComponent value={animal.races.name}>
+        <DetailCardComponent value={animal.race?.name}>
           Race :
         </DetailCardComponent>
       </div>

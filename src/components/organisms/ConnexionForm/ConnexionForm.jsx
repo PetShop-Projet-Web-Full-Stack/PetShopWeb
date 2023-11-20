@@ -81,14 +81,16 @@ const ConnexionForm = () => {
             </div>
           );
         })}
-        <div className="text-right">
+        <div className="text-right pb-5">
           <Link to="/forgot-password">
-            <div className="underline">Mot de passe oublié ?</div>
+            <ButtonComponent clazz={"bg-blue-500"}>
+              Mot de passe oublié ?
+            </ButtonComponent>
           </Link>
         </div>
         <div className="text-center flex justify-center items-center gap-5">
           <ButtonComponent
-            clazz={`w-auto bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 p-2 `}
+            clazz={`w-auto bg-blue-500 py-2 rounded-md hover:bg-blue-600 p-2 `}
           >
             <Link to={"/inscription"}>
               Pas encore de compte ? Inscrivez-vous !
@@ -97,7 +99,7 @@ const ConnexionForm = () => {
           <ButtonComponent
             type="submit"
             disabled={!formValid()}
-            clazz={`w-40 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 ${
+            clazz={`w-40 bg-blue-500 py-2 rounded-md hover:bg-blue-600 ${
               !formValid() ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

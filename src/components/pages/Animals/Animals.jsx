@@ -1,12 +1,9 @@
-import React from "react";
-import Header from "../../organisms/Header/Header";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getAllAnimals, getAnimalsByAnimalerieId } from "../../../store/animal";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
-import Footer from "../../organisms/Footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllAnimals, getAnimalsByAnimalerieId } from "../../../store/animal";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const Animals = () => {
   const navigate = useNavigate();
@@ -29,29 +26,25 @@ const Animals = () => {
   };
 
   return (
-    <div className="bg-slate-50 h-screen">
-      <Header />
-      <div className="flex bg-slate-50">
-        <AnimalsFilter />
-        <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
-          {animalCards.map((animal, index) => {
-            return (
-              <CardComponent
-                key={index}
-                title={animal.name}
-                description={animal.race?.name}
-                btnClazz={"bg-gray-900"}
-                btnContent="Voir plus"
-                srcImg={animal.imgSrc}
-                onButtonClick={() => {
-                  goToAnimalDetails(animal);
-                }}
-              />
-            );
-          })}
-        </div>
+    <div className="flex bg-slate-50">
+      <AnimalsFilter />
+      <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
+        {animalCards.map((animal, index) => {
+          return (
+            <CardComponent
+              key={index}
+              title={animal.name}
+              description={animal.race?.name}
+              btnClazz={"bg-gray-900"}
+              btnContent="Voir plus"
+              srcImg={animal.imgSrc}
+              onButtonClick={() => {
+                goToAnimalDetails(animal);
+              }}
+            />
+          );
+        })}
       </div>
-      <Footer />
     </div>
   );
 };

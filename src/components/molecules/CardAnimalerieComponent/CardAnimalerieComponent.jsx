@@ -2,15 +2,8 @@ import { Card, CardBody } from "@material-tailwind/react";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 
 const CardAnimalerieComponent = (props) => {
-  const {
-    srcImg,
-    title,
-    description,
-    btnDisable,
-    btnType,
-    btnClazz,
-    btnContent,
-  } = props;
+  const { srcImg, title, description, btnDisable, btnClazz, btnContent } =
+    props;
   return (
     <Card className="w-fit h-fit rounded-3xl bg-white ">
       <div className="flex flex-col rounded-3xl">
@@ -26,7 +19,6 @@ const CardAnimalerieComponent = (props) => {
         <div className="flex justify-end m-4">
           <ButtonComponent
             clazz={`${btnClazz} w-20 h-10 py-0`}
-            type={btnType}
             disabled={btnDisable || false}
           >
             {btnContent}

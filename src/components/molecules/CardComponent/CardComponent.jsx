@@ -7,7 +7,6 @@ const CardComponent = (props) => {
     title,
     description,
     btnDisable,
-    btnType,
     btnClazz,
     btnContent,
     onButtonClick,
@@ -31,7 +30,6 @@ const CardComponent = (props) => {
         <div className="flex justify-end mb-3 mr-3">
           <ButtonComponent
             clazz={`${btnClazz} w-28 h-10`}
-            type={btnType}
             disabled={btnDisable || false}
             onClick={onButtonClick}
           >

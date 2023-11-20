@@ -14,6 +14,7 @@ const AnimalerieDetailsCardComponent = (props) => {
   useEffect(() => {
     dispatch(getAnimalerieById({ id: idAnimal }));
   }, [dispatch, idAnimal]);
+
   return (
     <div className="text-center border rounded-2xl">
       <div className="text-4xl pb-12">{animalerie.name}</div>

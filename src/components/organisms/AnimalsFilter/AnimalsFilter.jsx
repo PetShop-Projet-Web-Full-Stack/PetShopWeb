@@ -14,6 +14,9 @@ import {
 const AnimalsFilter = () => {
   const dispatch = useDispatch();
 
+  const [raceCombo, setRaceCombo] = useState(null);
+  const [speciesCombo, setSpeciesCombo] = useState(null);
+
   const races = useSelector((state) => {
     return state.animals?.races?.map((race, index) => {
       return {
@@ -38,9 +41,6 @@ const AnimalsFilter = () => {
     minAge: { value: "", valid: false },
     maxAge: { value: "", valid: false },
   });
-
-  const [raceCombo, setRaceCombo] = useState(null);
-  const [speciesCombo, setSpeciesCombo] = useState(null);
 
   useEffect(() => {
     dispatch(getAllRaces());
