@@ -6,9 +6,13 @@ import {
   resetFormState,
 } from "../../toolkit/form.service";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { doConnexion } from "../../../store/user";
 
 const ConnexionForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: { value: "", valid: false },
     password: { value: "", valid: false },
@@ -40,10 +44,12 @@ const ConnexionForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formValid()) {
+      console.log(formState);
       const email = formState.email.value;
       const password = formState.password.value;
-      console.log(email, password);
+      dispatch(doConnexion({ email, password }));
       resetFormState(formState);
+      navigate("/");
     } else {
       alert("Le formulaire n'est pas rempli correctement");
     }
@@ -62,10 +68,7 @@ const ConnexionForm = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <form
-        onSubmit={handleSubmit}
-        className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg"
-      >
+      <div className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Connexion</h2>
         {form.map((field, index) => {
           return (
@@ -98,6 +101,7 @@ const ConnexionForm = () => {
           </ButtonComponent>
           <ButtonComponent
             type="submit"
+            onClick={handleSubmit}
             disabled={!formValid()}
             clazz={`w-40 bg-blue-500 py-2 rounded-md hover:bg-blue-600 ${
               !formValid() ? "opacity-50 cursor-not-allowed" : ""
@@ -106,7 +110,7 @@ const ConnexionForm = () => {
             Connexion
           </ButtonComponent>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

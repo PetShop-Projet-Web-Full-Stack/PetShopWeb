@@ -3,14 +3,15 @@ import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponen
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import { handleInputChange, isFormValid } from "../../toolkit/form.service";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { doInscription } from "../../../store/user";
 
 const InscriptionForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     nom: { value: "", valid: false },
-    prenom: { value: "", valid: false },
-    telephone: { value: "", valid: false },
     email: { value: "", valid: false },
     password: { value: "", valid: false },
     confirmation: { value: "", valid: false },
@@ -23,25 +24,14 @@ const InscriptionForm = () => {
       name: "nom",
       placeholder: "Nom",
     },
-    {
-      value: formState.prenom.value,
 
-      type: "text",
-      name: "prenom",
-      placeholder: "Prénom",
-    },
     {
       value: formState.email.value,
       type: "email",
       name: "email",
       placeholder: "Email",
     },
-    {
-      value: formState.telephone.value,
-      type: "tel",
-      name: "telephone",
-      placeholder: "Téléphone",
-    },
+
     {
       value: formState.password.value,
       type: "password",
@@ -71,13 +61,12 @@ const InscriptionForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formValid()) {
-      const nom = formState.nom.value;
-      const prenom = formState.prenom.value;
+      const name = formState.nom.value;
       const email = formState.email.value;
-      const tel = formState.telephone.value;
-      const pwd = formState.password.value;
+      const password = formState.password.value;
       const confirmation = formState.confirmation.value;
-      console.log(nom, prenom, tel, email, pwd, confirmation);
+      dispatch(doInscription({ name, email, password, confirmation }));
+
       navigate("/connexion", {
         state: {
           showAlert: true,
@@ -95,10 +84,7 @@ const InscriptionForm = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <form
-        onSubmit={handleSubmit}
-        className="mt-64 w-full md:w-1/2 p-4 pr-4 border border-gray-300 rounded-lg"
-      >
+      <div className="mt-64 w-full md:w-1/2 p-4 pr-4 border border-gray-300 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Inscription</h2>
         <div className="flex flex-wrap -mx-3 mb-4">
           {form.map((field, index) => {
@@ -125,6 +111,7 @@ const InscriptionForm = () => {
           </ButtonComponent>
           <ButtonComponent
             type="submit"
+            onClick={handleSubmit}
             disabled={!formValid()}
             clazz={`w-40 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 ${
               !formValid() ? "opacity-50 cursor-not-allowed" : ""
@@ -133,7 +120,7 @@ const InscriptionForm = () => {
             Inscription
           </ButtonComponent>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
