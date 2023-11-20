@@ -5,31 +5,41 @@ import Home from "./components/pages/Home/Home";
 import Connexion from "./components/pages/Connexion/Connexion";
 import Animalerie from "./components/pages/Animalerie/Animalerie";
 import Animals from "./components/pages/Animals/Animals";
-import AnimalerieAnimals from "./components/pages/Animalerie/Animals/AnimalerieAnimals";
 import Inscription from "./components/pages/Inscription/Inscription";
 import ForgotPassword from "./components/pages/ForgotPassword/ForgotPassword";
 import AnimalDetails from "./components/pages/AnimalDetails/AnimalDetails";
+import Header from "./components/organisms/Header/Header";
+import Footer from "./components/organisms/Footer/Footer";
+import AnimalerieAnimals from "./components/pages/AnimalerieAnimals/AnimalerieAnimals";
 
 function App() {
+  const routes = [
+    { path: "/", element: <Home /> },
+    { path: "/animals", element: <Animals /> },
+    { path: "/animaleries", element: <Animalerie /> },
+    { path: "/connexion", element: <Connexion /> },
+    { path: "/inscription", element: <Inscription /> },
+    { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
+    { path: "/forgot-password", element: <ForgotPassword /> },
+    { path: "/animal-details/:id", element: <AnimalDetails /> },
+  ];
+
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/animals" element={<Animals />}></Route>
-        <Route exact path="/animaleries" element={<Animalerie />}></Route>
-        <Route exact path="/connexion" element={<Connexion />}></Route>
-        <Route exact path="/inscription" element={<Inscription />}></Route>
-        <Route exact path="/animalerie/:id" element={<AnimalerieAnimals/>}></Route>
-        <Route
-          exact
-          path="/forgot-password"
-          element={<ForgotPassword />}
-        ></Route>
-        <Route
-          exact
-          path="/animal-details/:id"
-          element={<AnimalDetails />}
-        ></Route>
+        {routes.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <div className="flex-1">{route.element}</div>
+                <Footer />
+              </div>
+            }
+          />
+        ))}
       </Routes>
     </Router>
   );
