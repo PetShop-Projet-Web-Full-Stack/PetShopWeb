@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import ButtonHeader from "../../atoms/ButtonHeader/ButtonHeader";
 
 const Header = () => {
+  const user = useSelector((state) => {
+    return state.user.user;
+  });
+
   const headerBtn = [
     {
       content: "Accueil",
@@ -16,8 +21,8 @@ const Header = () => {
       link: "/animaleries",
     },
     {
-      content: "Connexion",
-      link: "/connexion",
+      content: user && user.name ? user.name : "Connexion",
+      link: user && user.name ? "" : "/connexion",
     },
   ];
 

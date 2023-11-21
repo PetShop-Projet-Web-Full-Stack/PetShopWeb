@@ -8,18 +8,13 @@ import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
 const Animals = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
   const animalCards = useSelector((state) => {
     return state.animals.animals;
   });
 
   useEffect(() => {
-    if (!location.state) {
-      dispatch(getAllAnimals());
-    } else {
-      dispatch(getAnimalsByAnimalerieId({ id: location.state.animalerie.id }));
-    }
-  }, [dispatch, location.state]);
+    dispatch(getAllAnimals());
+  }, [dispatch]);
 
   const goToAnimalDetails = (animal) => {
     navigate(`/animal-details/${animal.id}`, { state: { animal } });

@@ -52,16 +52,6 @@ export const getAllSpecies = createAsyncThunk(
   }
 );
 
-export const getAnimalsByAnimalerieId = createAsyncThunk(
-  "/animalerie/animals/id",
-  async (payload) => {
-    return await RequestApi.get("scantum/csrf-cookie").then(async () => {
-      const response = await RequestApi.get(`api/pet-shops/${payload.id}`);
-      return response.data;
-    });
-  }
-);
-
 export const animalSlice = createSlice({
   name: "animals",
   initialState: {
@@ -115,17 +105,6 @@ export const animalSlice = createSlice({
         state.species = action.payload;
       })
       .addCase(getAllSpecies.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
-      .addCase(getAnimalsByAnimalerieId.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(getAnimalsByAnimalerieId.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.animals = action.payload;
-      })
-      .addCase(getAnimalsByAnimalerieId.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
