@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { getAllAnimals, getAnimalsByAnimalerieId } from "../../../store/animal";
+import { useNavigate } from "react-router-dom";
+import { getAllAnimals } from "../../../store/animal";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
 

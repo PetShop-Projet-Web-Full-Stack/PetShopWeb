@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
-import {
-  handleInputChange,
-  isFormValid,
-  resetFormState,
-} from "../../toolkit/form.service";
-import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { doChangePassword } from "../../../store/user";
+import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
+import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
+import SuccessModal from "../../atoms/SuccessModal/SuccessModal";
+import { handleInputChange, isFormValid } from "../../toolkit/form.service";
 
 const ForgotPasswordForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [formState, setFormState] = useState({
     email: { value: "", valid: false },
@@ -32,18 +34,12 @@ const ForgotPasswordForm = () => {
     handleInputChange(event, setFormState, formState);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (formValid()) {
       const email = formState.email.value;
-      console.log(email);
-      resetFormState(formState);
-      navigate("/connexion", {
-        state: {
-          showAlert: true,
-          messageAlert: "Un email vient d'être envoyé",
-        },
-      });
+      await dispatch(doChangePassword({ email }));
+      setShowSuccessModal(true);
     } else {
       alert("Le formulaire n'est pas rempli correctement");
     }
@@ -53,12 +49,18 @@ const ForgotPasswordForm = () => {
     navigate("/connexion");
   };
 
+  const onCloseSuccessModal = () => {
+    navigate("/connexion", {
+      state: {
+        showAlert: true,
+        messageAlert: "Un email vient d'être envoyé",
+      },
+    });
+  };
+
   return (
     <div className="flex justify-center items-center">
-      <form
-        onSubmit={handleSubmit}
-        className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg"
-      >
+      <div className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Changer de mot de passe</h2>
         {form.map((field, index) => {
           return (
@@ -84,6 +86,7 @@ const ForgotPasswordForm = () => {
           </ButtonComponent>
           <ButtonComponent
             type="submit"
+            onClick={handleSubmit}
             disabled={!formValid()}
             clazz={`w-40 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 ${
               !formValid() ? "opacity-50 cursor-not-allowed" : ""
@@ -92,7 +95,13 @@ const ForgotPasswordForm = () => {
             Envoyer
           </ButtonComponent>
         </div>
-      </form>
+      </div>
+      <SuccessModal
+        isOpen={showSuccessModal}
+        closeModal={onCloseSuccessModal}
+        successMessage="Mail envoyé avec succès !"
+        successTitle="Succès"
+      />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import DetailCardComponent from "../../atoms/DetailCard/DetailCardComponent";
 const AnimalerieDetailsComponent = (props) => {
   const { animalerie } = props;
 
-  console.log(animalerie);
   return (
     <div className="bg-slate-100 w-2/5 xl:w-1/3 flex flex-col flex-grow gap-5 p-5 ">
       <div className="flex gap-3 justify-center">

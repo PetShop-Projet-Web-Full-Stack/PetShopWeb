@@ -21,9 +21,9 @@ const Footer = () => {
           <h2 className="text-2xl font-bold mb-2">Visitez notre site</h2>
           <nav>
             <ul className="text-md">
-              {links.map((link) => {
+              {links.map((link, index) => {
                 return (
-                  <li>
+                  <li key={index}>
                     <Link
                       to={link.to}
                       className="text-white hover:text-blue-500"
