@@ -11,6 +11,7 @@ import AnimalDetails from "./components/pages/AnimalDetails/AnimalDetails";
 import Header from "./components/organisms/Header/Header";
 import Footer from "./components/organisms/Footer/Footer";
 import AnimalerieAnimals from "./components/pages/AnimalerieAnimals/AnimalerieAnimals";
+import Test from "./components/pages/test";
 
 function App() {
   const routes = [
@@ -22,6 +23,7 @@ function App() {
     { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
+    { path: "/test", element: <Test/> },
   ];
 
   return (
