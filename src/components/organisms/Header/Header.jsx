@@ -1,12 +1,20 @@
 import { useSelector } from "react-redux";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import ButtonHeader from "../../atoms/ButtonHeader/ButtonHeader";
+import {DocumentDuplicateIcon, ArrowLeftOnRectangleIcon, PencilIcon} from "@heroicons/react/24/solid";
+import DropdownMenu from "../../atoms/DropDown/DropDown";
 
 const Header = () => {
   const user = useSelector((state) => {
     return state.user.user;
   });
-
+  const menuItems = [
+    {
+      icon: <ArrowLeftOnRectangleIcon className="mr-2 h-5 w-5" aria-hidden="true" />,
+      name: 'Logout',
+      path: '/logout',
+    },
+  ];
   const headerBtn = [
     {
       content: "Accueil",
@@ -40,9 +48,22 @@ const Header = () => {
       <div className={"flex flex-1 justify-end gap-6"}>
         {headerBtn.map((btn, index) => {
           return (
-            <ButtonHeader key={index} link={btn.link}>
-              {btn.content}
-            </ButtonHeader>
+            btn.content === user?.name
+              ?
+              <>
+                <DropdownMenu
+                  menuItems={menuItems}
+                  popupPosition="bottom"
+                  user={user}
+                  signInAllow={true}
+                />
+              </>
+              :
+              <>
+                <ButtonHeader key={index} link={btn.link}>
+                  {btn.content}
+                </ButtonHeader>
+              </>
           );
         })}
       </div>
