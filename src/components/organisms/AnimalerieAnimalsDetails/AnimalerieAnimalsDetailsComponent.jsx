@@ -7,7 +7,7 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
 
   return (
     <div className="flex bg-slate-100 gap-5 p-5 w-3/5 xl:w-2/3">
-      {animals ? (
+      {animals?.length > 0 ? (
         <div>
           <AnimalsFilter />
           <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
