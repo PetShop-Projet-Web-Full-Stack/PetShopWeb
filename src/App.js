@@ -25,10 +25,13 @@ function App() {
     { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
+    { path: "/test", element: <Test/> },
   ];
+
   const dispatch = useDispatch();
-  useEffect( () => {
-         dispatch(doConnectSessionUser());
+  useEffect(() => {
+    dispatch(doConnectSessionUser());
+  }, [dispatch]);
 
   return (
     <Router>
