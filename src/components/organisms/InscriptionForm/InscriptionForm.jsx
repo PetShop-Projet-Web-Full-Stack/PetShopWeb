@@ -1,14 +1,27 @@
 import React, { useState } from "react";
-import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
-import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
-import { handleInputChange, isFormValid } from "../../toolkit/form.service";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { doInscription } from "../../../store/user";
+import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
+import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
+import ErrorModal from "../../atoms/ModalError/ModalError";
+import SuccessModal from "../../atoms/SuccessModal/SuccessModal";
+import {
+  handleInputChange,
+  isFormValid,
+  isLengthCorrectForPassword,
+} from "../../toolkit/form.service";
 
 const InscriptionForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const userStatus = useSelector((state) => {
+    return state.user.status;
+  });
 
   const [formState, setFormState] = useState({
     nom: { value: "", valid: false },
@@ -24,7 +37,6 @@ const InscriptionForm = () => {
       name: "nom",
       placeholder: "Nom",
     },
-
     {
       value: formState.email.value,
       type: "email",
@@ -47,7 +59,14 @@ const InscriptionForm = () => {
   ];
 
   const formValid = () => {
-    return isFormValid(formState) && checkPasswrod();
+    return (
+      isFormValid(formState) &&
+      checkPasswrod() &&
+      isLengthCorrectForPassword(
+        formState.password.value,
+        formState.confirmation.value
+      )
+    );
   };
 
   const checkPasswrod = () => {
@@ -58,21 +77,22 @@ const InscriptionForm = () => {
     handleInputChange(event, setFormState, formState);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (formValid()) {
       const name = formState.nom.value;
       const email = formState.email.value;
       const password = formState.password.value;
       const confirmation = formState.confirmation.value;
-      dispatch(doInscription({ name, email, password, confirmation }));
 
-      navigate("/connexion", {
-        state: {
-          showAlert: true,
-          messageAlert: "Votre compte à été crée",
-        },
-      });
+      const response = await dispatch(
+        doInscription({ name, email, password, confirmation })
+      );
+      if (response.payload.success) {
+        setShowSuccessModal(true);
+      } else {
+        setShowErrorModal(true);
+      }
     } else {
       alert("Le formulaire n'est pas rempli correctement");
     }
@@ -80,6 +100,20 @@ const InscriptionForm = () => {
 
   const navigateOnClick = () => {
     navigate("/connexion");
+  };
+
+  const onCloseErrorModal = () => {
+    setShowErrorModal(false);
+  };
+
+  const onCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    navigate("/connexion", {
+      state: {
+        showAlert: true,
+        messageAlert: "Votre compte à été crée",
+      },
+    });
   };
 
   return (
@@ -121,6 +155,18 @@ const InscriptionForm = () => {
           </ButtonComponent>
         </div>
       </div>
+      <ErrorModal
+        isOpen={showErrorModal}
+        closeModal={onCloseErrorModal}
+        errorMessage="Erreur lors de l'inscription"
+        errorTitle="Erreur"
+      />
+      <SuccessModal
+        isOpen={showSuccessModal}
+        closeModal={onCloseSuccessModal}
+        successMessage="Vous êtes désormais inscrit !"
+        successTitle="Succès !"
+      />
     </div>
   );
 };
