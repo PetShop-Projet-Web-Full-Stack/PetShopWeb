@@ -26,12 +26,9 @@ function App() {
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
   ];
-
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(doConnectSessionUser());
-  }, [dispatch]);
+  useEffect( () => {
+         dispatch(doConnectSessionUser());
 
   return (
     <Router>
