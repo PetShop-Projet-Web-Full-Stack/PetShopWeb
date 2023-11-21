@@ -47,8 +47,8 @@ export const doConnectSessionUser = createAsyncThunk(
     try {
       const response = await RequestApi.get("api/user");
       return response.data;
-    }catch (error) {
-
+    } catch (error) {
+      console.log(error);
     }
   }
 );
