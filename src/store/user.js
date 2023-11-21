@@ -45,11 +45,10 @@ export const doConnectSessionUser = createAsyncThunk(
   "/user/sessionConnect",
   async () => {
     try {
-      await RequestApi.get("sanctum/csrf-cookie");
       const response = await RequestApi.get("api/user");
       return response.data;
-    } catch (error) {
-      console.log(error);
+    }catch (error) {
+
     }
   }
 );
