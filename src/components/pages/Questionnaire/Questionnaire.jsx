@@ -1,27 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getQuestions } from "../../../store/questionnaire";
+import React from "react";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
+import QuestionnaireParticule from "../../organisms/QuestionParticule/QuestionParticule";
+import particlesOptions from "../../toolkit/particule";
 
 const Questionnaire = () => {
-  const dispatch = useDispatch();
-  const questions = useSelector((state) => {
-    return state?.question?.questions;
-  });
-
-  useEffect(() => {
-    dispatch(getQuestions());
-  }, [dispatch]);
-
   return (
-    <div>
-      <ul>
-        {questions.map((question, index) => (
-          <li
-            key={index}
-            dangerouslySetInnerHTML={{ __html: question.content }}
-          />
-        ))}
-      </ul>
+    <div className="bg-gray-700">
+      <Particles
+        id="tsparticles"
+        options={particlesOptions}
+        init={(tsParticles) => loadSlim(tsParticles)}
+        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+      />
+      <QuestionnaireParticule />
     </div>
   );
 };

@@ -11,12 +11,27 @@ export const getQuestions = createAsyncThunk(
   }
 );
 
+
+export const getAnimalsModel = createAsyncThunk(
+  "/question/getAnimalsModel",
+  async (answers) => {
+    return await RequestApi.get("sanctum/csrf-cookie").then(async () => {
+      const response = await RequestApi.post("api/questions/answers", {
+        answers: answers,
+      });
+      return response.data;
+    });
+  }
+);
+
+
 export const questionSlice = createSlice({
   name: "question",
   initialState: {
     questions: [],
     status: "idle",
     error: null,
+    animalsModel: {},
   },
   reducers: {},
   extraReducers(builder) {
@@ -29,6 +44,17 @@ export const questionSlice = createSlice({
         state.questions = action.payload;
       })
       .addCase(getQuestions.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getAnimalsModel.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAnimalsModel.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.animalsModel = action.payload;
+      })
+      .addCase(getAnimalsModel.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
