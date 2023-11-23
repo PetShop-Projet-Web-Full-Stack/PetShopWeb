@@ -5,8 +5,8 @@ export const RequestApi = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Access-Control-Allow-Origin": "localhost:3000",
-    Referer: "localhost:3000",
+    "Access-Control-Allow-Origin": "localhost:2001",
+    Referer: "http://localhost:2001",
   },
   withCredentials: true,
 });

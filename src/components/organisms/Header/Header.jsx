@@ -1,18 +1,20 @@
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import ButtonHeader from "../../atoms/ButtonHeader/ButtonHeader";
 import {DocumentDuplicateIcon, ArrowLeftOnRectangleIcon, PencilIcon} from "@heroicons/react/24/solid";
 import DropdownMenu from "../../atoms/DropDown/DropDown";
+import {doLogoutUser} from "../../../store/user";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
   const user = useSelector((state) => {
     return state.user.user;
   });
   const menuItems = [
     {
-      icon: <ArrowLeftOnRectangleIcon className="mr-2 h-5 w-5" aria-hidden="true" />,
+      icon: <ArrowLeftOnRectangleIcon className="mr-2 h-5 w-5" aria-hidden="true"/>,
       name: 'Logout',
-      path: '/logout',
     },
   ];
   const headerBtn = [
@@ -34,6 +36,14 @@ const Header = () => {
     },
   ];
 
+  const onClickLogout = async ({name}) => {
+    console.log(name)
+    if(name === "Logout"){
+      await dispatch(doLogoutUser());
+      window.location.reload();
+    }
+  }
+
   return (
     <div
       className={
@@ -45,25 +55,23 @@ const Header = () => {
           Title
         </ButtonComponent>
       </div>
-      <div className={"flex flex-1 justify-end gap-6"}>
+      <div className={"flex flex-1 justify-end gap-6 items-center"}>
         {headerBtn.map((btn, index) => {
           return (
             btn.content === user?.name
               ?
-              <>
-                <DropdownMenu
-                  menuItems={menuItems}
-                  popupPosition="bottom"
-                  user={user}
-                  signInAllow={true}
-                />
-              </>
+              <DropdownMenu
+                key={index}
+                menuItems={menuItems}
+                popupPosition="bottom"
+                user={user}
+                signInAllow={true}
+                clickItem={onClickLogout}
+              />
               :
-              <>
-                <ButtonHeader key={index} link={btn.link}>
-                  {btn.content}
-                </ButtonHeader>
-              </>
+              <ButtonHeader key={index} link={btn.link}>
+                {btn.content}
+              </ButtonHeader>
           );
         })}
       </div>
