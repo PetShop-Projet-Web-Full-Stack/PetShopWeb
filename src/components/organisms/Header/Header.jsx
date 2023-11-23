@@ -57,7 +57,7 @@ const Header = () => {
     >
       <div className={"flex-1 text-left"}>
         <ButtonComponent clazz="text-white text-2xl font-semibold cursor-pointer whitespace-nowrap border-white">
-          Title
+          PetShop Site
         </ButtonComponent>
       </div>
       <div className={"flex flex-1 justify-end gap-6 items-center"}>

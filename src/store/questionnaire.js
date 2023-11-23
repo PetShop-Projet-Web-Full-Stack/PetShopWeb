@@ -26,7 +26,6 @@ export const questionSlice = createSlice({
       })
       .addCase(getQuestions.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action);
         state.questions = action.payload;
       })
       .addCase(getQuestions.rejected, (state, action) => {
