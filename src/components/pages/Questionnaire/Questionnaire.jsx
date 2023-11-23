@@ -5,7 +5,8 @@ import { getQuestions } from "../../../store/questionnaire";
 const Questionnaire = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => {
-    return state?.question?.questions.split("\n");
+    console.log(state);
+    return state?.question?.questions;
   });
 
   useEffect(() => {
@@ -16,7 +17,10 @@ const Questionnaire = () => {
     <div>
       <ul>
         {questions.map((question, index) => (
-          <li key={index} dangerouslySetInnerHTML={{ __html: question }} />
+          <li
+            key={index}
+            dangerouslySetInnerHTML={{ __html: question.content }}
+          />
         ))}
       </ul>
     </div>
