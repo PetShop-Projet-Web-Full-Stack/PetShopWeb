@@ -5,7 +5,6 @@ import { getQuestions } from "../../../store/questionnaire";
 const Questionnaire = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => {
-    console.log(state);
     return state?.question?.questions;
   });
 

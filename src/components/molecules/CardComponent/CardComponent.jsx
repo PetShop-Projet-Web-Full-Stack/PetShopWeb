@@ -17,7 +17,7 @@ const CardComponent = (props) => {
   const age = calculateAge(birthday);
 
   return (
-    <Card className="w-fit h-fit rounded-3xl bg-white transition-transform transform hover:scale-105">
+    <Card className="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/5  rounded-3xl bg-white transition-transform transform hover:scale-105">
       <div className="flex flex-col rounded-3xl">
         <img
           src={
@@ -26,19 +26,21 @@ const CardComponent = (props) => {
               : "https://imgs.search.brave.com/BMuYABP7oP4l8HymmSOQIH30nF_YQMtJm-y7Bz-vc6Q/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/dHdvLXRvbmUtaW5r/LWNsb3VkLmpwZz93/aWR0aD0xMDAwJmZv/cm1hdD1wanBnJmV4/aWY9MCZpcHRjPTA"
           }
           alt="Not found"
-          className="rounded-tl-3xl rounded-tr-3xl object-cover h-36 w-96 xl:h-80 lg:w-96"
+          className="rounded-tl-3xl rounded-tr-3xl object-cover h-56 w-full"
         />
-        <CardBody className="mb-3 px-5">
-          <div className="flex justify-between items-center">
+        <CardBody className="mb-3 px-4">
+          <div className="flex justify-between items-center gap-4">
             <div className="flex-col">
-              <h1 className="font-semibold text-2xl mb-2 mt-2">{title}</h1>
-              <p className="text-gray-700">{description}</p>
+              <h1 className="font-semibold text-xl mb-2 mt-2 whitespace-normal">
+                {title}
+              </h1>
+              <p className="text-gray-700 whitespace-normal">{description}</p>
             </div>
-            <p className="text-gray-700 text-2xl font-semibold">
+            <p className="text-gray-700 text-2xl font-semibold ">
               {age ? age : ""}
             </p>
             <ButtonComponent
-              clazz={`${btnClazz} w-28 h-10`}
+              clazz={`${btnClazz} w-28 h-18`}
               disabled={btnDisable || false}
               onClick={onButtonClick}
             >

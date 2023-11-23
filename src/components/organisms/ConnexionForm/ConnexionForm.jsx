@@ -40,7 +40,6 @@ const ConnexionForm = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log("test")
     event.preventDefault();
     if (formValid()) {
       const email = formState.email.value;
@@ -64,7 +63,10 @@ const ConnexionForm = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <form onSubmit={handleSubmit} className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-64 w-full md:w-1/2 p-4 border border-gray-300 rounded-lg"
+      >
         <h2 className="text-2xl font-bold mb-4">Connexion</h2>
         {form.map((field, index) => {
           return (
@@ -81,7 +83,6 @@ const ConnexionForm = () => {
           );
         })}
         <div className="text-center flex justify-center items-center gap-5">
-
           <ButtonComponent
             clazz={`w-auto bg-blue-500 py-2 rounded-md hover:bg-blue-600 p-2 `}
           >
@@ -102,7 +103,11 @@ const ConnexionForm = () => {
         </div>
         <div className="flex pt-4 justify-center">
           <Link to="/forgot-password">
-            <ButtonComponent clazz={" flex-nowrap whitespace-nowrap bg-blue-500 w-40 h-10 text-[0.7rem]"}>
+            <ButtonComponent
+              clazz={
+                " flex-nowrap whitespace-nowrap bg-blue-500 w-40 h-10 text-[0.7rem] hover:bg-blue-600"
+              }
+            >
               Mot de passe oublié ?
             </ButtonComponent>
           </Link>

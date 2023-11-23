@@ -18,21 +18,25 @@ const AnimalsFilter = () => {
   const [speciesCombo, setSpeciesCombo] = useState(null);
 
   const races = useSelector((state) => {
-    return state.animals?.races?.map((race, index) => {
+    const races = state.animals?.races?.map((race, index) => {
       return {
         name: race.name,
         value: `${index}`,
       };
     });
+    const updatedRaces = races.slice(0, -1);
+    return updatedRaces;
   });
 
   const species = useSelector((state) => {
-    return state.animals?.species?.map((specie, index) => {
+    const species = state.animals?.species?.map((specie, index) => {
       return {
         name: specie.name,
         value: `${index}`,
       };
     });
+    const updatedSpecies = species.slice(0, -1);
+    return updatedSpecies;
   });
 
   const [formState, setFormState] = useState({

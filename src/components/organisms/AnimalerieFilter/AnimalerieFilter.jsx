@@ -11,7 +11,7 @@ import { filterAnimalerie, getAllAnimalerie } from "../../../store/animalerie";
 const AnimalerieFilter = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => {
-    return state.animalerie?.animaleries
+    const cities = state.animalerie?.animaleries
       ?.map((animalerie) => {
         return {
           name: animalerie.city,
@@ -22,6 +22,8 @@ const AnimalerieFilter = () => {
         (item, index, self) =>
           index === self.findIndex((t) => t.name === item.name)
       );
+    const updatedCities = cities.slice(0, -1);
+    return updatedCities;
   });
 
   const [cityCombo, setCityCombo] = useState(null);

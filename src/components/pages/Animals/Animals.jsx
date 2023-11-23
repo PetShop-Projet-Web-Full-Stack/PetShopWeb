@@ -9,7 +9,9 @@ const Animals = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const animalCards = useSelector((state) => {
-    return state.animals.animals;
+    const animals = state.animals.animals;
+    const updatedAnimalCards = animals.slice(0, -1);
+    return updatedAnimalCards;
   });
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const Animals = () => {
   return (
     <div className="flex bg-slate-50">
       <AnimalsFilter />
-      <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
+      <div className="flex flex-wrap gap-12 pt-4 justify-center">
         {animalCards.map((animal, index) => {
           return (
             <CardComponent
