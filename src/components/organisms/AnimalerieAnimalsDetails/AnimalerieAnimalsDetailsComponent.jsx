@@ -7,7 +7,7 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
   const navigate = useNavigate();
   const onClickShowAnimals = (animal) => {
     navigate(`/animal-details/${animal.id}`, { state: { animal } });
-  }
+  };
 
   return (
     <div className="flex bg-slate-100 gap-5 p-5 w-3/5 xl:w-2/3">
@@ -24,6 +24,7 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
                   btnClazz={"bg-gray-900"}
                   btnContent="Voir plus"
                   srcImg={card.imgSrc}
+                  birthday={card.date_of_birth}
                   onButtonClick={() => onClickShowAnimals(card)}
                 />
               );
@@ -32,7 +33,7 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
         </div>
       ) : (
         <div className="h-full w-full flex justify-center items-center">
-          <h1 className="text-3xl font-bold uppercase">
+          <h1 className="text-3xl text-center font-bold uppercase">
             Pas d'animaux disponible dans cette animalerie
           </h1>
         </div>

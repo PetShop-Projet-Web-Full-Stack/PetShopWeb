@@ -23,7 +23,7 @@ const ComboBoxComponent = (props) => {
             {() => (
               <>
                 <div>
-                  <Menu.Button className="inline-flex w-full justify-center rounded-md text-gray-900 border hover:bg-xgreen-999 hover:text-white border-gray-400 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                  <Menu.Button className="inline-flex w-full justify-center rounded-md text-gray-900 border hover:bg-xgrey-999 transition hover:text-white border-gray-400 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                     {valueSelectedItem.name}
                     <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
                   </Menu.Button>
@@ -40,9 +40,7 @@ const ComboBoxComponent = (props) => {
                       {({ active }) => (
                         <button
                           className={`group flex w-full items-center rounded-md px-2 py-2 text-sm ${
-                            active
-                              ? "bg-xgreen-999 text-white"
-                              : "text-gray-900"
+                            active ? "bg-xgrey-900 text-white" : "text-gray-900"
                           }`}
                           onClick={() => {
                             setValueSelected(item.value);
@@ -52,7 +50,7 @@ const ComboBoxComponent = (props) => {
                           {item.icon ? (
                             <item.icon
                               className={`mr-2 h-5 w-5 ${
-                                active ? "text-white" : "text-xgreen-999"
+                                active ? "text-white" : "bg-xgrey-900"
                               }`}
                               aria-hidden="true"
                             />

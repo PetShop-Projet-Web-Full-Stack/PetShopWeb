@@ -53,18 +53,14 @@ export const doConnectSessionUser = createAsyncThunk(
   }
 );
 
-export const doLogoutUser = createAsyncThunk(
-  "/user/logoutUser",
-    async () => {
-      try {
-        const response = await RequestApi.post("api/logout");
-        return response;
-      }
-      catch (error){
-
-      }
-    }
-)
+export const doLogoutUser = createAsyncThunk("/user/logoutUser", async () => {
+  try {
+    const response = await RequestApi.post("api/logout");
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const doChangePassword = createAsyncThunk(
   "/user/forgot-password",

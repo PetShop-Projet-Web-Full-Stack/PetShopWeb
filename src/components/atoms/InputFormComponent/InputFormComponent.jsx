@@ -12,7 +12,7 @@ const InputFormComponent = (props) => {
     <div className="flex">
       <Input
         {...otherProps}
-        className={`h-10 w-full text-base border-2 rounded-lg text-18 border-solid border-gray-300 focus:border ${
+        className={`h-10 w-full text-base border-1 rounded-lg text-18 border-solid border-gray-400  focus:border ${
           checkInputError() ? "border-red-500" : ""
         } `}
         name={name}

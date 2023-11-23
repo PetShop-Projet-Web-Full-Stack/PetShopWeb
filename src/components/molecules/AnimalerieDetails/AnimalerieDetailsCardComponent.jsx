@@ -16,7 +16,7 @@ const AnimalerieDetailsCardComponent = (props) => {
   }, [dispatch, idAnimal]);
 
   return (
-    <div className="text-center border rounded-2xl">
+    <div className="text-center border rounded-2xl bg-white p-6 shadow-md">
       <div className="text-4xl pb-12">{animalerie.name}</div>
       <div className="font-bold grid grid-cols-2 gap-4">
         <DetailCardComponent value={animalerie.address}>
