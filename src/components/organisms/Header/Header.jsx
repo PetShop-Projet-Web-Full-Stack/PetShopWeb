@@ -4,9 +4,11 @@ import ButtonHeader from "../../atoms/ButtonHeader/ButtonHeader";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 import DropdownMenu from "../../atoms/DropDown/DropDown";
 import { doLogoutUser } from "../../../store/user";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => {
     return state.user.user;
   });
@@ -38,10 +40,12 @@ const Header = () => {
   ];
 
   const onClickLogout = async ({ name }) => {
-    console.log(name);
     if (name === "Logout") {
-      await dispatch(doLogoutUser());
-      window.location.reload();
+      dispatch(doLogoutUser());
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 200);
     }
   };
 

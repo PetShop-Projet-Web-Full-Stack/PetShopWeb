@@ -14,7 +14,7 @@ const DropdownMenu = ({
     <Menu as="div" className="relative inline-block z-50">
       <div>
         {signInAllow ? (
-          <Menu.Button className="gap-x-1.5 rounded-md px-3 py-2 text-2xl font-semibold text-white shadow-sm hover:bg-gray-500 hover:text-white">
+          <Menu.Button className="gap-x-1.5 rounded-md px-3 py-2 text-2xl font-semibold text-white shadow-sm hover:bg-gray-400 hover:text-white transition">
             <div className="flex flex-nowrap whitespace-nowrap justify-between items-center">
               {user.name}
               <ChevronDownIcon
@@ -70,7 +70,7 @@ const DropdownMenu = ({
                   )}
                 </Menu.Item>
               ) : (
-                <Menu.Item key={index}>
+                <Menu.Item key={index} className="cursor-pointer">
                   {({ active }) => (
                     <div
                       onClick={() => clickItem(menuItem)}
