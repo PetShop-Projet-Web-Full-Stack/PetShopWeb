@@ -45,7 +45,6 @@ export const doConnectSessionUser = createAsyncThunk(
   "/user/sessionConnect",
   async () => {
     try {
-      await RequestApi.get("sanctum/csrf-cookie");
       const response = await RequestApi.get("api/user");
       return response.data;
     } catch (error) {
@@ -53,6 +52,19 @@ export const doConnectSessionUser = createAsyncThunk(
     }
   }
 );
+
+export const doLogoutUser = createAsyncThunk(
+  "/user/logoutUser",
+    async () => {
+      try {
+        const response = await RequestApi.post("api/logout");
+        return response;
+      }
+      catch (error){
+
+      }
+    }
+)
 
 export const doChangePassword = createAsyncThunk(
   "/user/forgot-password",
@@ -118,6 +130,17 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(doConnectSessionUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(doLogoutUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(doLogoutUser.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        console.log(action.payload);
+      })
+      .addCase(doLogoutUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

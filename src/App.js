@@ -13,7 +13,7 @@ import Footer from "./components/organisms/Footer/Footer";
 import AnimalerieAnimals from "./components/pages/AnimalerieAnimals/AnimalerieAnimals";
 import { useEffect } from "react";
 import { doConnectSessionUser } from "./store/user";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
   const routes = [
@@ -27,6 +27,7 @@ function App() {
     { path: "/animal-details/:id", element: <AnimalDetails /> },
   ];
 
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(doConnectSessionUser());
@@ -35,9 +36,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        {routes.map((route) => (
+        {routes.map((route, index) => (
           <Route
-            key={route.path}
+            key={index}
             path={route.path}
             element={
               <div className="flex flex-col min-h-screen">
