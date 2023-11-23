@@ -1,14 +1,18 @@
 import React from "react";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalsFilter from "../AnimalsFilter/AnimalsFilter";
-
+import { useNavigate } from "react-router-dom";
 const AnimalerieAnimalsDetailsComponent = (props) => {
   const { animals } = props;
+  const navigate = useNavigate();
+  const onClickShowAnimals = (animal) => {
+    navigate(`/animal-details/${animal.id}`, { state: { animal } });
+  }
 
   return (
     <div className="flex bg-slate-100 gap-5 p-5 w-3/5 xl:w-2/3">
-      {animals ? (
-        <div>
+      {animals?.length > 0 ? (
+        <div className="flex gap-5">
           <AnimalsFilter />
           <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
             {animals.map((card, index) => {
@@ -20,6 +24,7 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
                   btnClazz={"bg-gray-900"}
                   btnContent="Voir plus"
                   srcImg={card.imgSrc}
+                  onButtonClick={() => onClickShowAnimals(card)}
                 />
               );
             })}

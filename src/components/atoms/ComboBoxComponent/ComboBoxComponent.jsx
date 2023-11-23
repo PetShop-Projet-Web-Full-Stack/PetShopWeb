@@ -29,7 +29,7 @@ const ComboBoxComponent = (props) => {
                   </Menu.Button>
                 </div>
                 <Menu.Items
-                  className={`absolute mt-2 w-56 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ${
+                  className={`absolute mt-2 w-56 max-h-48 overflow-y-auto divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ${
                     popupPosition === "top"
                       ? "mb-2 bottom-full origin-bottom-left left-10"
                       : ""

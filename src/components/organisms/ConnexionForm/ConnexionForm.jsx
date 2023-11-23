@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
-import {
-  handleInputChange,
-  isFormValid,
-  resetFormState,
-} from "../../toolkit/form.service";
-import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { doConnexion } from "../../../store/user";
+import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
+import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
+import ErrorModal from "../../atoms/ModalError/ModalError";
+import { handleInputChange, isFormValid } from "../../toolkit/form.service";
 
 const ConnexionForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [formState, setFormState] = useState({
     email: { value: "", valid: false },
     password: { value: "", valid: false },
@@ -41,30 +39,27 @@ const ConnexionForm = () => {
     handleInputChange(event, setFormState, formState);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (formValid()) {
-      console.log(formState);
       const email = formState.email.value;
       const password = formState.password.value;
-      dispatch(doConnexion({ email, password }));
-      resetFormState(formState);
-      navigate("/");
+
+      const response = await dispatch(doConnexion({ email, password }));
+
+      if (response.payload) {
+        navigate("/");
+      } else {
+        setShowErrorModal(true);
+      }
     } else {
       alert("Le formulaire n'est pas rempli correctement");
     }
   };
 
-  const location = useLocation();
-
-  useState(() => {
-    const showAlert = location?.state?.showAlert;
-    if (showAlert !== undefined) {
-      const messageAlert = location?.state?.messageAlert;
-      alert(messageAlert);
-      location.state = undefined;
-    }
-  }, [location]);
+  const onCloseErrorModal = () => {
+    setShowErrorModal(false);
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -111,6 +106,12 @@ const ConnexionForm = () => {
           </ButtonComponent>
         </div>
       </div>
+      <ErrorModal
+        isOpen={showErrorModal}
+        closeModal={onCloseErrorModal}
+        errorMessage="Une erreur interne est survenue"
+        errorTitle="Erreur !"
+      />
     </div>
   );
 };
