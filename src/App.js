@@ -13,7 +13,7 @@ import Footer from "./components/organisms/Footer/Footer";
 import AnimalerieAnimals from "./components/pages/AnimalerieAnimals/AnimalerieAnimals";
 import { useEffect } from "react";
 import { doConnectSessionUser } from "./store/user";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 function App() {
   const routes = [
@@ -25,7 +25,6 @@ function App() {
     { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
-    { path: "/test", element: <Test/> },
   ];
 
   const dispatch = useDispatch();
