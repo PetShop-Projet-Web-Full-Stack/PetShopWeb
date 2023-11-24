@@ -11,7 +11,7 @@ export const getAllFavorites = createAsyncThunk(
     }
 );
 
-export const getAnimalById = createAsyncThunk(
+export const getAnimalFavoritesById = createAsyncThunk(
     "/animal/:id",
     async (payload) => {
         return await RequestApi.get("sanctum/csrf-cookie").then(async () => {
@@ -43,14 +43,14 @@ export const favoriteSlice = createSlice({
                 state.status = "failed";
                 state.error = action.error.message;
             })
-            .addCase(getAnimalById.pending, (state) => {
+            .addCase(getAnimalFavoritesById.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(getAnimalById.fulfilled, (state, action) => {
+            .addCase(getAnimalFavoritesById.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.favorites = action.payload;
             })
-            .addCase(getAnimalById.rejected, (state, action) => {
+            .addCase(getAnimalFavoritesById.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
             });
