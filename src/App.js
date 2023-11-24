@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { doConnectSessionUser } from "./store/user";
 import { useDispatch } from "react-redux";
 import Questionnaire from "./components/pages/Questionnaire/Questionnaire";
+import Favorites from "./components/pages/Favorites/Favorites";
 
 function App() {
   const routes = [
@@ -24,6 +25,7 @@ function App() {
     { path: "/connexion", element: <Connexion /> },
     { path: "/inscription", element: <Inscription /> },
     { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
+    { path: "/favorites", element: <Favorites />},
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
     { path: "question", element: <Questionnaire /> },
