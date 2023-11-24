@@ -1,4 +1,5 @@
 import { Card, CardBody } from "@material-tailwind/react";
+import React from "react";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 
 const CardAnimalerieComponent = (props) => {
@@ -8,7 +9,7 @@ const CardAnimalerieComponent = (props) => {
     <Card className="w-fit h-fit rounded-3xl bg-white ">
       <div className="flex flex-col rounded-3xl">
         <img
-          src={srcImg}
+          src={`data:image/webp;base64,${srcImg}`}
           alt="Not found"
           className="rounded-tl-3xl rounded-tr-3xl object-cover h-80 w-96"
         />
