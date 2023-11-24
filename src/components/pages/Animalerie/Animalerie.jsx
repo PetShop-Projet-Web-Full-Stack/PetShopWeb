@@ -9,7 +9,9 @@ const Animalerie = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const animalerieCard = useSelector((state) => {
-    return state.animalerie.animaleries || [];
+    const animaleries = state.animalerie.animaleries;
+    const updatedAnimalerieCards = animaleries.slice(0, -1);
+    return updatedAnimalerieCards;
   });
 
   useEffect(() => {
@@ -27,22 +29,20 @@ const Animalerie = () => {
   return (
     <div className="flex bg-slate-50">
       <AnimalerieFilter />
-      <div className="flex flex-wrap gap-8 pt-4 pl-4 justify-start">
-        {animalerieCard.map((card, index) => {
-          return (
-            <CardComponent
-              key={index}
-              title={card.name}
-              description={`${card.address} ${card.city} `}
-              btnClazz={"bg-gray-900"}
-              btnContent="Voir plus"
-              srcImg={card.imgSrc}
-              onButtonClick={() => {
-                navigateToRecap(card);
-              }}
-            />
-          );
-        })}
+      <div className="flex flex-wrap gap-12 pt-4 justify-center">
+        {animalerieCard.map((card, index) => (
+          <CardComponent
+            key={index}
+            title={card.name}
+            description={`${card.address} ${card.city} `}
+            btnClazz={"bg-gray-900"}
+            btnContent="Voir plus"
+            srcImg={card.imgSrc}
+            onButtonClick={() => {
+              navigateToRecap(card);
+            }}
+          />
+        ))}
       </div>
     </div>
   );

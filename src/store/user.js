@@ -48,23 +48,19 @@ export const doConnectSessionUser = createAsyncThunk(
       const response = await RequestApi.get("api/user");
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
 
-export const doLogoutUser = createAsyncThunk(
-  "/user/logoutUser",
-    async () => {
-      try {
-        const response = await RequestApi.post("api/logout");
-        return response;
-      }
-      catch (error){
-
-      }
-    }
-)
+export const doLogoutUser = createAsyncThunk("/user/logoutUser", async () => {
+  try {
+    const response = await RequestApi.post("api/logout");
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 export const doChangePassword = createAsyncThunk(
   "/user/forgot-password",
@@ -138,7 +134,6 @@ export const userSlice = createSlice({
       })
       .addCase(doLogoutUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action.payload);
       })
       .addCase(doLogoutUser.rejected, (state, action) => {
         state.status = "failed";
