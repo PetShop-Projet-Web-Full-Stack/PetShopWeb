@@ -24,7 +24,6 @@ export const getAnimalFavoritesById = createAsyncThunk(
 export const favoriteSlice = createSlice({
     name: "favorite",
     initialState: {
-        favorite: {},
         favorites: [],
         status: "idle",
         error: null,

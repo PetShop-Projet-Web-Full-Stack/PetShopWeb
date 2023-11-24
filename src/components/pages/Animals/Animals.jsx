@@ -10,8 +10,7 @@ const Animals = () => {
   const dispatch = useDispatch();
   const animalCards = useSelector((state) => {
     const animals = state.animals.animals;
-    const updatedAnimalCards = animals.slice(0, -1);
-    return updatedAnimalCards;
+    return animals.slice(0, -1);
   });
 
   useEffect(() => {
