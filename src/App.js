@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./components/pages/Home/Home";
@@ -25,7 +24,7 @@ function App() {
     { path: "/connexion", element: <Connexion /> },
     { path: "/inscription", element: <Inscription /> },
     { path: "/animalerie/:id", element: <AnimalerieAnimals /> },
-    { path: "/favorites", element: <Favorites />},
+    { path: "/favorites", element: <Favorites /> },
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
     { path: "question", element: <Questionnaire /> },
