@@ -5,6 +5,7 @@ import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 import DropdownMenu from "../../atoms/DropDown/DropDown";
 import { doLogoutUser } from "../../../store/user";
 import { useNavigate } from "react-router-dom";
+import {StarIcon} from "@heroicons/react/24/outline";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,12 @@ const Header = () => {
     return state.user.user;
   });
   const menuItems = [
-    {
+      {
+          icon: <StarIcon className="mr-2 h-5 w-5" aria-hidden="true"/>,
+          name: 'Favorites',
+          path: '/favorites',
+      },
+      {
       icon: (
         <ArrowLeftOnRectangleIcon className="mr-2 h-5 w-5" aria-hidden="true" />
       ),
@@ -57,7 +63,7 @@ const Header = () => {
     >
       <div className={"flex-1 text-left"}>
         <ButtonComponent clazz="text-white text-2xl font-semibold cursor-pointer whitespace-nowrap border-white">
-          PetShop Site
+          PetShop
         </ButtonComponent>
       </div>
       <div className={"flex flex-1 justify-end gap-6 items-center"}>
