@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { doInscription } from "../../../store/user";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
@@ -11,6 +11,7 @@ import {
   isFormValid,
   isLengthCorrectForPassword,
 } from "../../toolkit/form.service";
+import ButtonBackComponent from "../../atoms/ButtonBackComponent/ButtonBackComponent";
 
 const InscriptionForm = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,6 @@ const InscriptionForm = () => {
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  const userStatus = useSelector((state) => {
-    return state.user.status;
-  });
 
   const [formState, setFormState] = useState({
     nom: { value: "", valid: false },
@@ -98,10 +95,6 @@ const InscriptionForm = () => {
     }
   };
 
-  const navigateOnClick = () => {
-    navigate("/connexion");
-  };
-
   const onCloseErrorModal = () => {
     setShowErrorModal(false);
   };
@@ -137,12 +130,7 @@ const InscriptionForm = () => {
           })}
         </div>
         <div className="text-center mb-4 flex justify-center items-center gap-5">
-          <ButtonComponent
-            onClick={navigateOnClick}
-            clazz={`w-20 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600`}
-          >
-            Retour
-          </ButtonComponent>
+          <ButtonBackComponent clazz="w-20 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600" />
           <ButtonComponent
             type="submit"
             onClick={handleSubmit}

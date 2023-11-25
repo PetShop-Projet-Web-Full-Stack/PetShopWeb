@@ -52,6 +52,42 @@ export const getAllSpecies = createAsyncThunk(
   }
 );
 
+export const addAnimalFavorite = createAsyncThunk(
+  "/api/animals-user/",
+  async (payload) => {
+    try {
+      await RequestApi.get("sanctum/csrf-cookie").then(async () => {
+        const response = await RequestApi.post(`api/animals-user/`, payload);
+        return response.data;
+      });
+    } catch (error) {
+      console.error(error);
+      return {
+        error: true,
+      };
+    }
+  }
+);
+
+export const deleteAnimalFavorite = createAsyncThunk(
+  "/api/animals-user/",
+  async (payload) => {
+    try {
+      await RequestApi.get("sanctum/csrf-cookie").then(async () => {
+        const response = await RequestApi.delete(
+          `api/animals-user/${payload.id}`
+        );
+        return response.data;
+      });
+    } catch (error) {
+      console.error(error);
+      return {
+        error: true,
+      };
+    }
+  }
+);
+
 export const animalSlice = createSlice({
   name: "animals",
   initialState: {
@@ -105,6 +141,23 @@ export const animalSlice = createSlice({
         state.species = action.payload;
       })
       .addCase(getAllSpecies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(addAnimalFavorite.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(addAnimalFavorite.fulfilled, (state, action) => {
+        state.status = "succeeded";
+
+        if (state.animals.length > 0) {
+          const animal = state.animals.find(
+            (animal) => animal.id === action.meta.arg.id
+          );
+          animal.is_favorite = !animal.is_favorite;
+        }
+      })
+      .addCase(addAnimalFavorite.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

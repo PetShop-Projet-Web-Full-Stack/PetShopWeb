@@ -1,6 +1,8 @@
 import { Card, CardBody } from "@material-tailwind/react";
 import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import { calculateAge } from "../../toolkit/age-calculator.service";
+import ButtonFavorite from "../../atoms/ButtonFavorite/ButtonFavorite";
+import { useSelector } from "react-redux";
 
 const CardComponent = (props) => {
   const {
@@ -12,12 +14,18 @@ const CardComponent = (props) => {
     btnContent,
     onButtonClick,
     birthday,
+    isAnimal = false,
+    favoriteAnimal = false,
+    favOnClick,
   } = props;
 
   const age = calculateAge(birthday);
+  const user = useSelector((state) => {
+    return state.user.user;
+  });
 
   return (
-    <Card className="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/5  rounded-3xl bg-white transition-transform transform hover:scale-105">
+    <Card className="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/5 h-96 rounded-3xl bg-white transition-transform transform hover:scale-105">
       <div className="flex flex-col rounded-3xl">
         <img
           src={
@@ -39,6 +47,16 @@ const CardComponent = (props) => {
             <p className="text-gray-700 text-2xl font-semibold ">
               {age ? age : ""}
             </p>
+          </div>
+          <div className="flex gap-2 mt-3 justify-between">
+            {isAnimal && user ? (
+              <ButtonFavorite
+                favorite={favoriteAnimal}
+                favOnClick={favOnClick}
+              />
+            ) : (
+              ""
+            )}
             <ButtonComponent
               clazz={`${btnClazz} w-28 h-18`}
               disabled={btnDisable || false}
