@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# PETSHOP WEB
+
+## Pré recquis
+
+### `node js`
+
+Pour installer node js, rendez-vous sur ce site : https://nodejs.org/en/download/
+Installez la **version LTS** en fonction de votre système d'exploitation.
+Une fois installé, vérifiez que l'installation s'est bien effectuée.
+
+Pour cela effecutez la commande **node --version**
+Si vous n'avez pas d'erreur et que dans votre terminal vous avez comme résultat **v.1X.XX.X** c'est que votre node js s'est bien installé
+
+## Configuration du projet
+
+Créer le **fichier .env** s'il n'existe pas et ajouter tout les valeurs que l'on retrouve dans le fichier **.env.example**
+La configuration dépendra de votre configuration fait pour le backend. (définition du host, du port front et du port backend de laravel)
 
 ## Pour lancer l'application front
 
@@ -6,35 +22,11 @@
 
 ### `npm start`
 
-## Utilisation des différents composants:
+## Fonctionnalités de l'application :
 
-### Button
-
-clazz = une classe spécifique qu'on veut donner ne plus des classes de base du composant
-disabled = gestion du disable du boutton dynamiquement
-type = submit / reset / button
-
-### Input
-
-name = nom de lin'put opur qu'on puisse faire des références dans les formulaires
-required = gestion de l'obligation ou non du field (permet de changer de style)
-onChange = méthode du field faisant un traitement spécifique permettant un max de dynamisme dans les algo
-value = la valeur affichée dans le field
-...otherProps = placeholder par exemple et d'autres props
-
-### Dropdown
-
-{
-icon: HomeIcon,
-name: "Home",
-path: "/",
-},
-
-### Combo box
-
-Attention à bien mettre les values en string si on s'en sert pour une formulaire sinon ça va planter on faigt un .trim, or sur un nombre ça va pas marcher !
-{
-icon: PencilIcon,
-name: "Modifier",
-value: "0",
-},
+- Gestion d'un compte utilisateur (inscription / connexion / changement de mot passe / déconnexion)
+- Affichage de tout les animaux et possibilité de les filtrer en fonction de l'espèce de la race et de la tranche d'âge
+- Affichage de toutes les animaleries et possibilité de les filtrer en fonction de la ville et du code postal
+- Affichage les détails d'un animal cliqué (infos de l'animal)
+- Affichage les détails d'une animalerie cliquée (infos + animaux)
+- Affichage de la liste des animaux favoris de l'utilisateur connecté
