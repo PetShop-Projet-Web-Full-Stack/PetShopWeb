@@ -27,7 +27,7 @@ function App() {
     { path: "/favorites", element: <Favorites /> },
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/animal-details/:id", element: <AnimalDetails /> },
-    { path: "question", element: <Questionnaire /> },
+    { path: "/questionnaire", element: <Questionnaire /> },
   ];
 
   const dispatch = useDispatch();

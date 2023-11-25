@@ -3,7 +3,7 @@ import { animalSlice } from "./animal";
 import { animalerieSlice } from "./animalerie";
 import { userSlice } from "./user";
 import { questionSlice } from "./questionnaire";
-import {favoriteSlice} from "./favorites";
+import { favoriteSlice } from "./favorites";
 
 export const store = configureStore({
   reducer: {
