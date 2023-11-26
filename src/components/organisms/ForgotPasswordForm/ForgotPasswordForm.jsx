@@ -6,6 +6,7 @@ import ButtonComponent from "../../atoms/ButtonComponent/ButtonComponent";
 import InputFormComponent from "../../atoms/InputFormComponent/InputFormComponent";
 import SuccessModal from "../../atoms/SuccessModal/SuccessModal";
 import { handleInputChange, isFormValid } from "../../toolkit/form.service";
+import ButtonBackComponent from "../../atoms/ButtonBackComponent/ButtonBackComponent";
 
 const ForgotPasswordForm = () => {
   const navigate = useNavigate();
@@ -45,10 +46,6 @@ const ForgotPasswordForm = () => {
     }
   };
 
-  const navigateOnClick = () => {
-    navigate("/connexion");
-  };
-
   const onCloseSuccessModal = () => {
     navigate("/connexion", {
       state: {
@@ -78,12 +75,7 @@ const ForgotPasswordForm = () => {
         })}
 
         <div className="text-center flex justify-center items-center gap-5">
-          <ButtonComponent
-            onClick={navigateOnClick}
-            clazz={`w-20 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600`}
-          >
-            Retour
-          </ButtonComponent>
+          <ButtonBackComponent clazz="w-20 bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600" />
           <ButtonComponent
             type="submit"
             onClick={handleSubmit}
