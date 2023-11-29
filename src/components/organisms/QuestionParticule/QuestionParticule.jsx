@@ -62,12 +62,14 @@ const QuestionnaireParticule = () => {
       (_, index) =>
         `${currentQuestionIndex}-option-${index}` === selectedResponse
     );
+    let answerObject = {
+      id_question: currentQuestionIndex + 1,
+      answer: responseLabel,
+    }
+
     setUserResponses((prevResponses) => [
       ...prevResponses,
-      {
-        id_question: currentQuestionIndex,
-        answer: responseLabel,
-      },
+      answerObject
     ]);
   };
 
