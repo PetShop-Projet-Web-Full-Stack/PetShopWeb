@@ -10,7 +10,6 @@ export const RequestApi = axios.create({
     "Content-Type": "application/json",
     Accept: "application/json",
     "Access-Control-Allow-Origin": `${host}:${frontPort}`,
-    Referer: `${host}:${frontPort}`,
   },
   withCredentials: true,
 });
