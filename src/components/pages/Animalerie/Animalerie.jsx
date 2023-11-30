@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getAllAnimalerie } from "../../../store/animalerie";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {getAllAnimalerie} from "../../../store/animalerie";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalerieFilter from "../../organisms/AnimalerieFilter/AnimalerieFilter";
 
@@ -10,8 +10,7 @@ const Animalerie = () => {
   const dispatch = useDispatch();
   const animalerieCard = useSelector((state) => {
     const animaleries = state.animalerie.animaleries;
-    const updatedAnimalerieCards = animaleries.slice(0, -1);
-    return updatedAnimalerieCards;
+    return animaleries.slice(0, -1);
   });
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const Animalerie = () => {
             description={`${card.address} ${card.city} `}
             btnClazz={"bg-gray-900"}
             btnContent="Voir plus"
-            srcImg={card.imgSrc}
+            srcImg={card?.media?.content}
             onButtonClick={() => {
               navigateToRecap(card);
             }}

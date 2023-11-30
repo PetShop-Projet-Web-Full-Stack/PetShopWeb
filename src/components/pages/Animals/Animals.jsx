@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllAnimals } from "../../../store/animal";
+import { deleteAnimalFavorite, getAllAnimals } from "../../../store/animal";
 import CardComponent from "../../molecules/CardComponent/CardComponent";
 import AnimalsFilter from "../../organisms/AnimalsFilter/AnimalsFilter";
+import { addAnimalFavorite } from "../../../store/animal";
 
 const Animals = () => {
   const navigate = useNavigate();
@@ -34,9 +35,18 @@ const Animals = () => {
               btnClazz={"bg-gray-900"}
               btnContent="Voir plus"
               birthday={animal.date_of_birth}
-              srcImg={animal.imgSrc}
+              srcImg={animal.media.content}
               onButtonClick={() => {
                 goToAnimalDetails(animal);
+              }}
+              isAnimal={true}
+              favoriteAnimal={animal.is_favorite}
+              favOnClick={() => {
+                if (animal.is_favorite) {
+                  dispatch(deleteAnimalFavorite({ id: animal.id }));
+                } else {
+                  dispatch(addAnimalFavorite({ id: animal.id }));
+                }
               }}
             />
           );
