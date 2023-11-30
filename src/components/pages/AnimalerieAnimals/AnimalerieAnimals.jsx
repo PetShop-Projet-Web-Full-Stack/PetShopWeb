@@ -5,8 +5,6 @@ import AnimalerieDetailsComponent from "../../organisms/AnimalerieDetails/Animal
 import ButtonBackComponent from "../../atoms/ButtonBackComponent/ButtonBackComponent";
 const AnimalerieAnimals = () => {
   const { state } = useLocation();
-  console.log(state?.animalerie)
-
 
   return (
     <div className="flex flex-col bg-slate-100 h-screen">
