@@ -35,7 +35,7 @@ const Animals = () => {
               btnClazz={"bg-gray-900"}
               btnContent="Voir plus"
               birthday={animal.date_of_birth}
-              srcImg={animal.imgSrc}
+              srcImg={animal.media.content}
               onButtonClick={() => {
                 goToAnimalDetails(animal);
               }}
