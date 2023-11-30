@@ -16,7 +16,6 @@ const ScorePage = () => {
 
   const animalsData = useSelector((state) => {
     const animals = state.question.animalsModel.animals;
-    console.log(animals);
     const total = state.question.animalsModel.total;
     return {
       animals: animals,
