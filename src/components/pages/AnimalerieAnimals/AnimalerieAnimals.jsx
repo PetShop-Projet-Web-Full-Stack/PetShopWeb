@@ -5,11 +5,13 @@ import AnimalerieDetailsComponent from "../../organisms/AnimalerieDetails/Animal
 import ButtonBackComponent from "../../atoms/ButtonBackComponent/ButtonBackComponent";
 const AnimalerieAnimals = () => {
   const { state } = useLocation();
+  console.log(state?.animalerie)
+
 
   return (
-    <div className="flex flex-col bg-slate-100 ">
+    <div className="flex flex-col bg-slate-100 h-screen">
       <ButtonBackComponent clazz="self-end mt-2 mr-2" />
-      <div className="flex">
+      <div className="flex flex-grow">
         <AnimalerieDetailsComponent animalerie={state.animalerie} />
         <AnimalerieAnimalsDetailsComponent
           animals={state.animalerie?.animals}

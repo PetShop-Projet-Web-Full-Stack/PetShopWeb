@@ -25,7 +25,6 @@ const AnimalDetailsComponent = (props) => {
     } else {
       dispatch(addAnimalFavorite({ id: animal.id }));
     }
-
     setIsFavorite(!isFavorite);
   };
 
@@ -33,7 +32,7 @@ const AnimalDetailsComponent = (props) => {
     <div className="bg-slate-50 flex">
       <div className="flex-1 p-5">
         <img
-          src={`data:image/webp;base64,${animal.media}`}
+          src={`data:image/webp;base64,${animal?.media?.content}`}
           alt="Not found"
           className="rounded-tl-3xl rounded-3xl object-cover h-[50rem] w-full"
         />

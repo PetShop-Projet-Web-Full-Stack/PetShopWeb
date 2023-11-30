@@ -20,10 +20,10 @@ const AnimalerieAnimalsDetailsComponent = (props) => {
                 <CardComponent
                   key={index}
                   title={card.name}
+                  srcImg={card.media?.content}
                   description={card.race?.name}
                   btnClazz={"bg-gray-900"}
                   btnContent="Voir plus"
-                  srcImg={card.imgSrc}
                   birthday={card.date_of_birth}
                   onButtonClick={() => onClickShowAnimals(card)}
                 />

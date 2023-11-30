@@ -5,6 +5,7 @@ export const getAllAnimalerie = createAsyncThunk(
   "animalerie/fetchAnimalerie",
   async () => {
     return await RequestApi.get("sanctum/csrf-cookie").then(async () => {
+
       const response = await RequestApi.get("api/pet-shops");
       return response.data;
     });

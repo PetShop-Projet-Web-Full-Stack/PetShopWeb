@@ -8,7 +8,7 @@ const AnimalerieDetailsComponent = (props) => {
       <div className="flex justify-center">
         <img
           className="rounded-3xl w-80 lg:w-full h-64 object-cover"
-          src={`data:image/webp;base64,${animalerie.medias_id}`}
+          src={`data:image/webp;base64,${animalerie?.media?.content}`}
           alt="Not found"
         />
       </div>
